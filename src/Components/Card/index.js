@@ -1,17 +1,23 @@
 import React from 'react';
 import './index.css';
-const Card = ({ monster }) => {
+const Card = ({ kitten }) => {
   return (
     <div className='Card'>
-      <div key={monster.id}>
-        <img
-          src={`https://robohash.org/${monster.id}?set=set4&size=200x200`}
-          alt=''
-        />
-        <h2>{monster.name}</h2>
-        <p>{monster.email}</p>
-        <p>{monster.phone}</p>
-        <p>{monster.website}</p>
+      <div className='Card-inner'>
+        <div key={kitten.id}>
+          <div className='Card-front'>
+            <img
+              src={`https://robohash.org/${kitten.id}?set=set4&size=200x200`}
+              alt=''
+            />
+            <h2>{kitten.name}</h2>
+          </div>
+          <div className='Card-back'>
+            <p>{kitten.email}</p>
+            <p>{kitten.phone}</p>
+            <p>{kitten.website}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

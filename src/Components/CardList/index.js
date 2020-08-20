@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import './index.css';
 import Card from '../Card';
-
+import Search from '../Search';
 class CardList extends Component {
   state = {
-    monsters: [],
+    kittens: [],
     searchField: '',
   };
 
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
-      .then((users) => this.setState({ monsters: users }))
+      .then((users) => this.setState({ kittens: users }))
       .catch((error) => console.log(error));
   }
 
@@ -25,16 +25,18 @@ class CardList extends Component {
   };
 
   render() {
+    //for search
+    const { kittens, searchField } = this.state;
+    const filterKitten = kittens.filter((kitten) =>
+      kitten.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+
     return (
       <div>
-        <input
-          type='search'
-          placeholder='Search Kittens'
-          onChange={this.searchChange}
-        />
+        <Search placeholder='Search kittens' searchChange={this.searchChange} />
         <div className='CardList'>
-          {this.state.monsters.map((monster) => (
-            <Card key={monster.id} monster={monster} />
+          {filterKitten.map((kitten) => (
+            <Card key={kitten.id} kitten={kitten} />
           ))}
         </div>
       </div>
